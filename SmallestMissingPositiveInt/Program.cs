@@ -26,10 +26,29 @@ class Result
 
     public static int findSmallestMissingPositive(List<int> orderNumbers)
     {
+        if(orderNumbers.Count>1){
+            for(int i = 0 ; i<orderNumbers.Count;i++){
+                if(orderNumbers[i]>0 && orderNumbers[i] <= orderNumbers.Count){
+                    int posIndexNumber = orderNumbers[i]-1;
+                    if(orderNumbers[i] != orderNumbers[posIndexNumber]){
+                        int temp=orderNumbers[i];
+                        orderNumbers[i]=orderNumbers[posIndexNumber];
+                        orderNumbers[posIndexNumber]=temp;
+                        i--;
+                    }   
+                }
+            }
+        }
         
-       
+        for(int i = 0 ; i<orderNumbers.Count;i++){
+            int correspNumber = i+1;
+            if(orderNumbers[i]!=correspNumber){
+                return correspNumber;
+            }   
+        }
+            
         
-        return 0;
+        return orderNumbers.Count + 1;
     }
 }
 class Solution
